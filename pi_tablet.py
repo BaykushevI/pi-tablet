@@ -23,12 +23,12 @@ import subprocess
 
 
 # Settings
-WINDOW_Size = (1024,600)
+WINDOW_SIZE = (1024, 600)
 NIGHT_MODE_START = 23
 NIGHT_MODE_END = 7
 STANDBY_TIMEOUT = 30
 LOCATION = "Sofia"
-OPENWEATHER_API_KEY = "YOUR_API_KEY_HERE"
+OPENWEATHER_API_KEY = "baeab5723c721975319ad6f192d1c90b"
 
 # Main screen - Clock
 class ClockScreen(Screen):
@@ -382,5 +382,6 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
 
 
