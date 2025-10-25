@@ -17,8 +17,8 @@ sudo apt-get install -y python3-pip python3-dev build-essential \
 
 # Install Python packages
 echo "Installing Python packages..."
-pip3 install --upgrade pip
-pip3 install kivy requests psutil
+pip3 install --upgrade pip --break-system-packages
+pip3 install kivy requests psutil --break-system-packages
 
 # Setup autostart
 echo "Setting up autostart..."
@@ -34,3 +34,4 @@ X-GNOME-Autostart-enabled=true
 EOF
 
 echo "PI Tablet installation complete. The application will start automatically on next boot."
+
