@@ -284,7 +284,7 @@ class SystemScreen(Screen):
         Clock.schedule_interval(self.update_info, 2)
         self.update_info(0)
 
-    def update_system_info(self, dt):
+    def update_info(self, dt):
         try:
             # CPU
             cpu_percent = psutil.cpu_percent(interval = 1)
@@ -382,3 +382,4 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
