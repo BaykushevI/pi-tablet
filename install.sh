@@ -1,41 +1,36 @@
 #!/bin/bash
 
-echo "Installing PI Tablet ..."
+echo "Installing Pi Tablet dependencies..."
+echo ""
 
 # Update system
-sudo apt-get update
-sudo apt-get upgrade -y
+echo "Updating system..."
+sudo apt-get update -qq
 
-# Install python dependencies
-echo "Installing Python dependencies..."
-sudo apt-get install -y python3-pip python3-dev build-essential
-sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-sudo apt-get install -y pkg-config libgl1-mesa-dev libgles2-mesa-dev
-sudo apt-get install -y python3-setuptools libgstreamer1.0-dev git-core
-sudo apt-get install -y gstreamer1.0-plugins-{bad,base,good,ugly}
-sudo apt-get install -y gstreamer1.0-{omx,alsa} python3-dev libmtdev-dev
-sudo apt-get install -y xclip xsel libjpeg-dev
+# Install dependencies
+echo "Installing system packages..."
+sudo apt-get install -y python3-pip python3-dev build-essential \
+    libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+    pkg-config libgl1-mesa-dev libgles2-mesa-dev \
+    gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+    libraspberrypi-bin xinput
 
-# Install pip packages
-echo "Installing required Python packages..."
+# Install Python packages
+echo "Installing Python packages..."
 pip3 install --upgrade pip
-pip3 install -r reuirements.txt
+pip3 install kivy requests psutil
 
-# Create autostart script
-echo "Creating autostart script..."
+# Setup autostart
+echo "Setting up autostart..."
 mkdir -p ~/.config/autostart
-
-cat > ~/.config/autostart/pi_tablet.desktop << E0F
+cat > ~/.config/autostart/pi_tablet.desktop << 'EOF'
 [Desktop Entry]
 Type=Application
-Name=PI Tablet
-Exec=/usr/bin/python3 $(pwd)/pi_tablet.py
+Name=Pi Tablet
+Exec=/usr/bin/python3 /home/ibayk/pi-tablet/pi_tablet.py
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-E0F
-
-# Runnable script created
-chmod -x pi_tablet.py
+EOF
 
 echo "PI Tablet installation complete. The application will start automatically on next boot."
