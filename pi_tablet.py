@@ -128,14 +128,14 @@ class WeatherScreen(Screen):
             self.rect = Rectangle(size = Window.size, pos = self.layout.pos)
 
         # Weather Info Label
-        title = Label(
-            text = 'Loading weather...',
+        self.title = Label(
+            text = 'Weather Forecast',
             font_size = '36sp',
             bold = True,
             size_hint_y = 0.15,
             color = (0.9, 0.9, 1, 1)
         )
-        self.layout.add_widget(title)
+        self.layout.add_widget(self.title)
 
         # Current time
         self.current_weather = Label(
@@ -156,6 +156,7 @@ class WeatherScreen(Screen):
         self.update_weather(0)
 
     def update_weather(self, dt):
+        self.title.text = 'Weather Forecast'
         try:
             if OPENWEATHER_API_KEY == "YOUR_API_KEY_HERE":
                 self.current_weather.text = "API Key Missing"
@@ -382,6 +383,7 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
 
 
 
