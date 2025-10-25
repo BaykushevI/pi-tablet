@@ -147,7 +147,7 @@ class WeatherScreen(Screen):
         self.layout.add_widget(self.current_weather)
 
         # 5 day forecast
-        self.forecast_layout = GridLayout(cols = 5, spacing = 10, size_hint_y = 0.6)
+        self.forecast_grid = GridLayout(cols = 5, spacing = 10, size_hint_y = 0.6)
         self.layout.add_widget(self.forecast_grid)
 
         self.add_widget(self.layout)
@@ -395,4 +395,5 @@ class PiTabletApp(App):
             pass
 
 if __name__ == '__main__':
+
     PiTabletApp().run()
