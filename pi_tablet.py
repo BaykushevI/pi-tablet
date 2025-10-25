@@ -38,7 +38,7 @@ class ClockScreen(Screen):
 
         with self.layout.canvas.before:
             Color(0.1, 0.1, 0.15, 1)  # Black background
-            self.rect = Rectangle(size=WINDOW_Size, pos=self.layout.pos)
+            self.rect = Rectangle(size = WINDOW_SIZE, pos = self.layout.pos)
 
         # Digital Clock
         self.time_label = Label(
@@ -331,7 +331,7 @@ class SystemScreen(Screen):
 class PiTabletApp(App):
     def build(self):
         # Set window size
-        Window.size = WINDOW_Size
+        Window.size = WINDOW_SIZE
         Window.clearcolor = (0.1, 0.1, 0.15, 1)
 
         # Screen Manager
@@ -382,6 +382,7 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
 
 
 
