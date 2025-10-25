@@ -28,7 +28,7 @@ NIGHT_MODE_START = 23
 NIGHT_MODE_END = 7
 STANDBY_TIMEOUT = 30
 LOCATION = "Sofia"
-OPENWEATHER_API_KEY = "baeab5723c721975319ad6f192d1c90b"
+OPENWEATHER_API_KEY = "YOUR_API_KEY_HERE"
 
 # Main screen - Clock
 class ClockScreen(Screen):
@@ -103,7 +103,7 @@ class ClockScreen(Screen):
 
     def update_weather(self, dt):
         try:
-            if OPENWEATHER_API_KEY == "baeab5723c721975319ad6f192d1c90b":
+            if OPENWEATHER_API_KEY == "YOUR_API_KEY_HERE":
                 self.temp_label.text = "API Key Missing"
                 return
             
@@ -157,7 +157,7 @@ class WeatherScreen(Screen):
 
     def update_weather(self, dt):
         try:
-            if OPENWEATHER_API_KEY == "baeab5723c721975319ad6f192d1c90b":
+            if OPENWEATHER_API_KEY == "YOUR_API_KEY_HERE":
                 self.current_weather.text = "API Key Missing"
                 return
             
@@ -382,4 +382,5 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
 
