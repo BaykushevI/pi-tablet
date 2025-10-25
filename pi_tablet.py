@@ -270,34 +270,19 @@ class SystemScreen(Screen):
         self.layout.add_widget(title)
 
         # Info Labels
-        self.cpu_label = Label(
-            text = 'CPU Usage: --%',
-            font_size = '24sp',
-            size_hint_y = 0.2,
-            color = (0.8, 0.9, 1, 1)
+        self.info_label = Label(
+            text='Loading...',
+            font_size='22sp',
+            size_hint_y=0.85,
+            color=(0.8, 0.9, 1, 1),
+            markup=True
         )
-        self.layout.add_widget(self.cpu_label)
-
-        self.memory_label = Label(
-            text = 'Memory Usage: --%',
-            font_size = '24sp',
-            size_hint_y = 0.2,
-            color = (0.8, 0.9, 1, 1)
-        )
-        self.layout.add_widget(self.memory_label)
-
-        self.disk_label = Label(
-            text = 'Disk Usage: --%',
-            font_size = '24sp',
-            size_hint_y = 0.2,
-            color = (0.8, 0.9, 1, 1)
-        )
-        self.layout.add_widget(self.disk_label)
-
+        self.layout.add_widget(self.info_label)
+        
         self.add_widget(self.layout)
-
-        Clock.schedule_interval(self.update_system_info, 5)
-        self.update_system_info(0)
+        
+        Clock.schedule_interval(self.update_info, 2)
+        self.update_info(0)
 
     def update_system_info(self, dt):
         try:
