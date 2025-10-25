@@ -185,7 +185,7 @@ class WeatherScreen(Screen):
 
             if response_forecast.status_code == 200:
                 # Clear previous forecast
-                self.forecast_layout.clear_widgets()
+                self.forecast_grid.clear_widgets()
 
                 # Get one refresh per day
                 daily_forecast = []
@@ -205,7 +205,7 @@ class WeatherScreen(Screen):
 
                 for forecast in daily_forecast:
                     day_widget = self.create_day_widget(forecast)
-                    self.forecast_layout.add_widget(day_widget)
+                    self.forecast_grid.add_widget(day_widget)
         except Exception as e:
             self.current_weather.text = "Error loading weather"
 
@@ -382,6 +382,7 @@ class PiTabletApp(App):
 if __name__ == '__main__':
 
     PiTabletApp().run()
+
 
 
 
