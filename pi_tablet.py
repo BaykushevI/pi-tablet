@@ -13,17 +13,11 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.graphics import Color, Rectangle, RoundedRectangle
-from kivy.metrics import dp
-from datetime import datetime, timedelta
+from kivy.graphics import Color, Rectangle
+from datetime import datetime
 import requests
-import json
-import sqlite3
 import psutil
 import subprocess
 
@@ -35,28 +29,6 @@ NIGHT_MODE_END = 7
 STANDBY_TIMEOUT = 30
 LOCATION = "Sofia"
 OPENWEATHER_API_KEY = "baeab5723c721975319ad6f192d1c90b"
-
-# Database
-def init_database():
-    conn = sqlite3.connect('pi_tablet.db')
-    c = conn.cursor()
-
-    # Table for shopiing lists
-    c.execute('''CREATE TABLE IF NOT EXISTS shopping_lists
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 items TEXT,
-                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                 completed INTEGER DEFAULT 0)''')
-    
-    # Table for reminders
-    c.execute('''CREATE TABLE IF NOT EXISTS reminders
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 text TEXT NOT NULL,
-                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                 priority TEXT DEFAULT 'normal')''')
-    
-    conn.commit()
-    conn.close()
 
 # Main screen - Clock
 class ClockScreen(Screen):
@@ -220,7 +192,7 @@ class WeatherScreen(Screen):
                 current_date = None
 
                 for item in data_forecast['list']:
-                    date_txt = item['dt_txt']
+                    dt_text = item['dt_txt']
                     date = dt_text.split()[0]
                     time = dt_text.split()[1]
 
@@ -276,12 +248,6 @@ class WeatherScreen(Screen):
         layout.add_widget(desc_label)
 
         return layout
-    
-# Shopping List Screen
-# TODO 
-
-# Google Calendar Screen
-# TODO
 
 # System information Screen
 class SystemScreen(Screen):
@@ -382,9 +348,6 @@ class PiTabletApp(App):
         # Set window size
         Window.size = WINDOW_Size
         Window.clearcolor = (0.1, 0.1, 0.15, 1)
-
-        # Initialize database
-        init_database()
 
         # Screen Manager
         sm = ScreenManager(transition = SlideTransition(duration = 0.3))
